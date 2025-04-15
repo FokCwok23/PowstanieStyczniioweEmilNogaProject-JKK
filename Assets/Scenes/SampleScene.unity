@@ -562,7 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePanel: {fileID: 1831053086}
   textComponent: {fileID: 2083746728}
-  textSpeed: 0.2
+  textSpeed: 0.1
+  player: {fileID: 1540667931}
   lines: []
 --- !u!1 &398003606
 GameObject:
@@ -685,6 +686,8 @@ MonoBehaviour:
   lines:
   - Eluwina
   - Cwelu jebany
+  isPerson: 0
+  dialogueFinished: 0
 --- !u!61 &415184635
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -774,7 +777,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1873,6 +1876,7 @@ GameObject:
   - component: {fileID: 1540667932}
   - component: {fileID: 1540667935}
   - component: {fileID: 1540667934}
+  - component: {fileID: 1540667936}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1976,7 +1980,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1540667935
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2014,6 +2018,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &1540667936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540667931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7a25f43f286b645a24fa7b0d236e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &1557632395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,7 +2655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 519420028}
-  parallaxEffect: 0.3
+  parallaxEffect: 0.1
 --- !u!212 &1856888097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2921,7 +2938,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 2122148043}
   - {fileID: 1540667933}
+  - {fileID: 415184637}
   - {fileID: 1669871217}
   - {fileID: 258405776}
   - {fileID: 1433997370}
-  - {fileID: 415184637}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI textComponent;
     [SerializeField] private float textSpeed;
+    [SerializeField] private GameObject player;
+    private PlayerMovement playerMovement;
 
     public string[] lines;
     private int index;
@@ -16,18 +19,32 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         main = this;
+        playerMovement = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (textComponent.text == lines[index])
+        if (Input.GetKeyDown(KeyCode.Escape)) { 
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && dialoguePanel.activeInHierarchy)
+        {
+            if (index < lines.Length)
             {
-                NextLine();
-            } else {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
+                if (textComponent.text == lines[index])
+                {
+                    NextLine();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    textComponent.text = lines[index];
+                }
+            }
+            else
+            {
+                playerMovement.enabled = true;
                 dialoguePanel.SetActive(false);
             }
         }
@@ -35,6 +52,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string[] dialogueLines)
     {
+        playerMovement.enabled = false;
         dialoguePanel.SetActive(true);
         textComponent.text = string.Empty;
         index = 0;
@@ -53,11 +71,15 @@ public class DialogueManager : MonoBehaviour
     void NextLine()
     {
         if (index < lines.Length - 1)
-        {
-            index++;
-            textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
-        }
-
+            {
+                index++;
+                textComponent.text = string.Empty;
+                StartCoroutine(TypeLine());
+            }
+        else
+            {
+            playerMovement.enabled = true;
+            dialoguePanel.SetActive(false);
+            }
     }
 }

@@ -11,11 +11,9 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        rb2d.linearVelocity = new Vector2(moveHorizontal * speed, moveVertical * speed);
+        rb2d.linearVelocity = new Vector2(moveHorizontal * speed, 0);
     }
 }
